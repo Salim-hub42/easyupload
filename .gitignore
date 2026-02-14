@@ -3,3 +3,4 @@ vendor/
 bdd.db
 .dev_local/
 var/
+.vscode
