@@ -38,6 +38,7 @@ function sendToDestinataire($mail, $sendTo, $sendFrom, $downloadFile, $messagepe
     }
 }
 
+
 function envoieMail($sendTo, $sendFrom, $downloadFile, $messageperso)
 {
     $sendToD = explode(',', $sendTo);

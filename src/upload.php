@@ -58,6 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         createZip($repositoryPath, $repositoryName, $zipFiles);
         insertPieceJointe($emetteur, $destinataire, $date, $repositoryPath);
 
+        setLog('Envoie du mail', 'TRACE');
+
         envoieMail($destinataire, $emetteur, $repositoryName, $messageperso);
 
         if ($errors) print_r($errors);
