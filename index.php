@@ -1,6 +1,6 @@
 <?php
 
-require 'vendor/autoload.php';
+require_once 'vendor/autoload.php';
 
 include_once 'src/dotEnv.php';
 include_once 'src/log.php';

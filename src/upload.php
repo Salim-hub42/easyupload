@@ -1,6 +1,6 @@
 <?php
 require_once 'log.php';
-require '../vendor/autoload.php';
+require_once '../vendor/autoload.php';
 include_once 'dotEnv.php';
 dotEnv("../");
 
@@ -35,9 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $errors = [];
 
-        $all_files = count($_FILES['files']['tmp_name']);
+        $file_count = count($_FILES['files']['tmp_name']);
 
-        for ($i = 0; $i < $all_files; $i++) {
+        for ($i = 0; $i < $file_count; $i++) {
             $file_name = $_FILES['files']['name'][$i];
             $file_tmp = $_FILES['files']['tmp_name'][$i];
             $file_type = $_FILES['files']['type'][$i];
@@ -45,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $file = $repositoryPath . $file_name;
 
+            // TODO :  controler aussi clientside, exprimer size limit de manière plus informatique
             if ($file_size > 536870912) {
                 $errors[] = 'File size exceeds limit: ' . $file_name . ' ' . $file_type;
             }

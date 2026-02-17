@@ -6,7 +6,7 @@ require_once 'log.php';
 include_once 'dotEnv.php';
 dotEnv("../");
 //Load Composer's autoloader
-require '../vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 
 function emailSetting()
