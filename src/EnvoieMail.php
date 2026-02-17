@@ -24,17 +24,22 @@ function emailSetting()
 
 function sendToDestinataire($mail, $sendTo, $sendFrom, $downloadFile, $messageperso)
 {
-    $delais = 7;
-    $downloadLink = $_ENV['WEB_URL'] . '/src/downloadPage.php?file=' . $downloadFile;
-    $mail->addAddress($sendTo, '');     //Add a recipient
-    $mail->Subject = 'EasyUpload: Réception de Fichiers';
-    $mailTemplate = destiMailTemplate($sendTo, $sendFrom, $downloadLink, $delais, $messageperso);
-    $mail->Body    = $mailTemplate;
-    setLog("Envoi du mail au destinataire", 'TRACE');
-    if (!$mail->send()) {
-        return $mail->ErrorInfo;
-    } else {
-        return 'noerror';
+    try {
+
+
+        $delais = 7;
+        $downloadLink = $_ENV['WEB_URL'] . '/src/downloadPage.php?file=' . $downloadFile;
+        $mail->addAddress($sendTo, '');     //Add a recipient
+        $mail->Subject = 'EasyUpload: Réception de Fichiers';
+        $mailTemplate = destiMailTemplate($sendTo, $sendFrom, $downloadLink, $delais, $messageperso);
+        $mail->Body    = $mailTemplate;
+        if (!$mail->send()) {
+            setLog("Envoi du mail réussi", 'TRACE');
+            return 'noerror';
+        }
+    } catch (Exception $e) {
+        setLog($mail->ErrorInfo, 'ERROR');
+        return $e->getMessage();
     }
 }
 

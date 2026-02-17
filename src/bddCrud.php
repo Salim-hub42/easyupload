@@ -7,12 +7,12 @@ function connexionBDD()
         $db = new PDO($_ENV['DB_CONNECTION'] . ':' . '../' . $_ENV['DB_DATABASE']);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         setLog('Connexion à la base de données', 'TRACE');
+        return $db;
     } catch (PDOException $e) {
         echo "Connection failed: " . $e->getMessage();
         setLog($e->getMessage(), 'ERROR');
-        exit;
+        return;
     }
-    return $db;
 }
 
 function insertPieceJointe($emetteur, $destinataire, $date, $repositoryPath)

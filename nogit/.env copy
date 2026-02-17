@@ -1,0 +1,17 @@
+DB_CONNECTION=sqlite
+DB_DATABASE=bdd.db
+
+FIRST_NAME=Easy
+LAST_NAME=Upload
+
+MAIL_HOST=in-v3.mailjet.com
+MAIL_USERNAME=83cbd2005460cd9ec473a6963c50b877
+MAIL_PASSWORD=81bcaf7cd0d14bbf5c5463b535531ded
+MAIL_PORT=465
+
+MAIL_FROM=noreply@clonetransfert.sc3czkq9370.universe.wf
+MAIL_FROM_NAME= "${FIRST_NAME}${LAST_NAME}"
+
+WEB_URL=http://easyupload.test/
+
+ENVIRONMENT=dev
