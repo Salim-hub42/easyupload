@@ -26,15 +26,15 @@ function sendToDestinataire($mail, $sendTo, $sendFrom, $downloadFile, $messagepe
 {
     try {
 
-
         $delais = 7;
         $downloadLink = $_ENV['WEB_URL'] . '/src/downloadPage.php?file=' . $downloadFile;
         $mail->addAddress($sendTo, '');     //Add a recipient
         $mail->Subject = 'EasyUpload: Réception de Fichiers';
         $mailTemplate = destiMailTemplate($sendTo, $sendFrom, $downloadLink, $delais, $messageperso);
         $mail->Body    = $mailTemplate;
-        if (!$mail->send()) {
-            setLog("Envoi du mail réussi", 'TRACE');
+        $sendSuccess = $mail->send();
+        if ($sendSuccess) {
+            setLog("Envoi email au destinataires " . $sendTo . " Ok", "TRACE");
             return 'noerror';
         }
     } catch (Exception $e) {
@@ -43,6 +43,9 @@ function sendToDestinataire($mail, $sendTo, $sendFrom, $downloadFile, $messagepe
     }
 }
 
+/**
+ * TODO : Recoder l'envoi email, la fonction envoi 2 fois, il faut découpler
+ */
 
 function envoieMail($sendTo, $sendFrom, $downloadFile, $messageperso)
 {

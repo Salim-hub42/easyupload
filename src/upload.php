@@ -33,6 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
+        // log toutes les erreurs qui euvent survenir
+        // TODO refactorer car c'est pas propre
         $errors = [];
 
         $file_count = count($_FILES['files']['tmp_name']);
