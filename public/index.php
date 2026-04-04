@@ -22,12 +22,20 @@ switch ($uri) {
     case '/upload':
         require __DIR__ . '/../src/upload.php';
         break;
+    case '/download':
+        $file = $_GET['file'] ?? null;
+        if (!$file) {
+            http_response_code(400);
+            die('Paramètre manquant');
+        }
+        require __DIR__ . '/../src/downloadPage.php';
+        break;
     case '/login':
         require __DIR__ . '/../src/pageLogin.html';
         break;
     default:
         http_response_code(404);
-        require __DIR__ . '/../src/404.php';
+        require __DIR__ . '/404.html';
         break;
 }
 

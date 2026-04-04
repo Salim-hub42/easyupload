@@ -109,7 +109,7 @@ function main() {
 
     displaySpinner();
     resetForm();
-    debugger
+
     await fetch(url, {
       method: "POST",
       body: formData,
