@@ -31,10 +31,11 @@ function main() {
     "#messageEmailTextarea"
   );
   // Défini l'URL et le formulaire
-  const url = `${location.origin}/src/upload.php`;
+  const url = `${location.origin}/upload`;
 
   /**
    * Evènements
+   * on fait un check du formulaire
    */
   function handleFormChangeOrClick(event) {
     if (event.type === "change") {
@@ -108,7 +109,7 @@ function main() {
 
     displaySpinner();
     resetForm();
-
+    debugger
     await fetch(url, {
       method: "POST",
       body: formData,
