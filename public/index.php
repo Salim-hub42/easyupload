@@ -22,6 +22,14 @@ switch ($uri) {
     case '/upload':
         require __DIR__ . '/../src/upload.php';
         break;
+    case '/getFile':
+        $file = $_GET['file'] ?? null;
+        if (!$file) {
+            http_response_code(400);
+            die('Paramètre manquant');
+        }
+        require __DIR__ . '/../src/download.php';
+        break;
     case '/download':
         $file = $_GET['file'] ?? null;
         if (!$file) {

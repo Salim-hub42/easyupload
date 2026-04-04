@@ -1,11 +1,6 @@
 <?php
-require_once '../vendor/autoload.php';
-include_once 'dotEnv.php';
-require_once 'log.php';
-dotEnv("../");
-
 $title = 'Télécharger';
-include '_header.php';
+
 ?>
 
 <div class="form">
@@ -15,7 +10,7 @@ include '_header.php';
         setLog('Page de téléchargement', 'TRACE');
         echo '<p>Téléchargement du fichier : ' . htmlspecialchars($file) . '</p>';
         echo '<div class="button-container">';
-        echo '<button type="button" class="btn btn-primary" onclick="window.location.href=\'Download.php?file=' . urlencode($file) . '\'">Télécharger</button>';
+        echo '<button type="button" class="btn btn-primary" onclick="window.location.href=\'getFile?file=' . urlencode($file) . '\'">Télécharger</button>';
         echo '</div>';
     } else {
         echo '<p>Aucun fichier spécifié pour le téléchargement.</p>';
@@ -23,6 +18,3 @@ include '_header.php';
     }
     ?>
 </div>
-<?php
-include '_footer.php';
-?>
