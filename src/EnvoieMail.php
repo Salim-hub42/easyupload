@@ -12,7 +12,7 @@ require_once '../vendor/autoload.php';
 function emailSetting()
 {
     //Create an instance; passing `true` enables exceptions
-    $mail = new PHPMailService;
+    $mail = new PHPMailService();
     setLog("Parametres d'emails", 'TRACE');
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
@@ -27,7 +27,7 @@ function sendToDestinataire($mail, $sendTo, $sendFrom, $downloadFile, $messagepe
     try {
 
         $delais = 7;
-        $downloadLink = $_ENV['WEB_URL'] . '/src/downloadPage.php?file=' . $downloadFile;
+        $downloadLink = $_ENV['WEB_URL'] . 'download/?file=' . $downloadFile;
         $mail->addAddress($sendTo, '');     //Add a recipient
         $mail->Subject = 'EasyUpload: Réception de Fichiers';
         $mailTemplate = destiMailTemplate($sendTo, $sendFrom, $downloadLink, $delais, $messageperso);
@@ -69,7 +69,7 @@ function envoieMail($sendTo, $sendFrom, $downloadFile, $messageperso)
     if ($countFail === 0) {
         $case = true;
         $messageSubject = 'Vos fichiers ont été correctement transférés!';
-    } else if ($countFail ===  count($sendTo)) {
+    } elseif ($countFail ===  count($sendTo)) {
         $case = false;
         $messageSubject = 'Vos fichiers n\'ont pus être transférés!';
     } else {
@@ -178,8 +178,8 @@ function expeMailTemplate($sendTo, $sendFrom, $case)
         // Utilise la chaîne telle quelle si un seul email
         $formattedEmails = $sendTo;
     }
-    $case ? $content =
-        "Vos fichiers ont été correctement transférés! Le lien de téléchargement de vos fichiers à bien été envoyé à : $formattedEmails."
+    $case ? $content
+        = "Vos fichiers ont été correctement transférés! Le lien de téléchargement de vos fichiers à bien été envoyé à : $formattedEmails."
         : $content = "Suite à une erreur, le lien de téléchargement de vos fichiers n'a pas pu être envoyé à $formattedEmails. Merci de bien vouloir réessayer ou de contacter notre service technique.";
     $commonStyles = getCommonEmailStyles();
     $link = $_ENV['WEB_URL'];
